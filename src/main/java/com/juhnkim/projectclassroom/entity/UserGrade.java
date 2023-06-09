@@ -24,5 +24,53 @@ public class UserGrade {
     @JoinColumn(name = "username")
     private Account account;
 
+    public UserGrade() {
 
+    }
+
+    public UserGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    @Override
+    public String toString() {
+        return "UserGrade{" +
+                "id=" + id +
+                ", grade='" + grade + '\'' +
+                ", course=" + course +
+                ", account=" + account +
+                '}';
+    }
 }

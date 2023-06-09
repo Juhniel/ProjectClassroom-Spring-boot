@@ -30,11 +30,11 @@ public class Account {
     @JoinColumn(name = "authority_id")
     private Authority authority;
 
-    @OneToMany(
-            mappedBy = "account",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    private List<Authority> authorityList;
+//    @OneToMany(
+//            mappedBy = "account",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY)
+//    private List<Authority> authorityList;
 
     @OneToMany(mappedBy = "account",
             cascade = CascadeType.ALL,
@@ -98,13 +98,13 @@ public class Account {
         this.user = user;
     }
 
-    public List<Authority> getAuthorityList() {
-        return authorityList;
-    }
-
-    public void setAuthorityList(List<Authority> authorityList) {
-        this.authorityList = authorityList;
-    }
+//    public List<Authority> getAuthorityList() {
+//        return authorityList;
+//    }
+//
+//    public void setAuthorityList(List<Authority> authorityList) {
+//        this.authorityList = authorityList;
+//    }
 
     public List<UserCourse> getUserCourseList() {
         return userCourseList;
@@ -120,6 +120,14 @@ public class Account {
 
     public void setUserGradeList(List<UserGrade> userGradeList) {
         this.userGradeList = userGradeList;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 
     @Override
