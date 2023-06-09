@@ -2,6 +2,8 @@ package com.juhnkim.projectclassroom.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "authority")
@@ -14,12 +16,11 @@ public class Authority {
     @Column(name = "authority")
     private String authority;
 
-    @ManyToOne(
-            cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH},
-            fetch = FetchType.EAGER)
-    @JoinColumn(name = "username")
-    private Account account;
-
+    @OneToMany(
+            mappedBy = "authority",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private List<Account> accountList;
 
     public Authority() {
 
@@ -45,12 +46,12 @@ public class Authority {
         this.authority = authority;
     }
 
-    public Account getAccount() {
-        return account;
+    public List<Account> getAccountList() {
+        return accountList;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class Authority {
         return "Authority{" +
                 "id=" + id +
                 ", authority='" + authority + '\'' +
-                ", account=" + account +
+                ", accountList=" + accountList +
                 '}';
     }
 }

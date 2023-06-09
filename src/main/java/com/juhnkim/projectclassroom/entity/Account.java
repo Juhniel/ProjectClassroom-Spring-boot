@@ -26,11 +26,26 @@ public class Account {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "authority_id")
+    private Authority authority;
+
     @OneToMany(
             mappedBy = "account",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Authority> authorityList;
+
+    @OneToMany(mappedBy = "account",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private List<UserCourse> userCourseList;
+
+    @OneToMany(mappedBy = "account",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private List<UserGrade> userGradeList;
+
 
     public Account() {
 
@@ -89,6 +104,22 @@ public class Account {
 
     public void setAuthorityList(List<Authority> authorityList) {
         this.authorityList = authorityList;
+    }
+
+    public List<UserCourse> getUserCourseList() {
+        return userCourseList;
+    }
+
+    public void setUserCourseList(List<UserCourse> userCourseList) {
+        this.userCourseList = userCourseList;
+    }
+
+    public List<UserGrade> getUserGradeList() {
+        return userGradeList;
+    }
+
+    public void setUserGradeList(List<UserGrade> userGradeList) {
+        this.userGradeList = userGradeList;
     }
 
     @Override

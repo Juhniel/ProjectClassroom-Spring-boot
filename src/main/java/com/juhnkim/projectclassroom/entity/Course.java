@@ -15,11 +15,17 @@ public class Course {
     @Column(name = "course_name")
     private String courseName;
 
-    @ManyToMany(
+    @OneToMany(
             mappedBy = "course",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<UserCourse> userCourseList;
+
+    @OneToMany(
+            mappedBy = "course",
+            fetch = FetchType.LAZY)
+    private List<UserGrade> userGradeList;
+
 
     public Course() {
 

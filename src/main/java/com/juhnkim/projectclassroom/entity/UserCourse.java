@@ -12,12 +12,13 @@ public class UserCourse {
     @Column(name = "id")
     private int id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "username")
-    private List<Account> accountList;
+    private Account account;
 
-    @ManyToMany
-    private List<Course> courseList;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 
     public UserCourse() {
 
@@ -31,21 +32,6 @@ public class UserCourse {
         this.id = id;
     }
 
-    public List<Account> getAccountList() {
-        return accountList;
-    }
-
-    public void setAccountList(List<Account> accountList) {
-        this.accountList = accountList;
-    }
-
-    public List<Course> getCourseList() {
-        return courseList;
-    }
-
-    public void setCourseList(List<Course> courseList) {
-        this.courseList = courseList;
-    }
 
     @Override
     public String toString() {
