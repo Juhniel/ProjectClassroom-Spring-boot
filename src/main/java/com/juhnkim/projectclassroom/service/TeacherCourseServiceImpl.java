@@ -21,7 +21,7 @@ public class TeacherCourseServiceImpl implements TeacherCourseService{
 
     @Override
     public String update(TeacherCourse teacherCourse) {
-        return null;
+        return "";
     }
 
     @Override

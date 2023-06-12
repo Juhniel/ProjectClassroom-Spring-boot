@@ -5,11 +5,12 @@ import com.juhnkim.projectclassroom.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -22,7 +23,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(int id) {
-        return null;
+        Optional<User> result = userRepository.findById(id);
+
+        User user;
+
+        if(result.isPresent()) {
+            user = result.get();
+        } else {
+            throw new RuntimeException("Did not find the user with id:" + id);
+        }
+
+        return user;
     }
 
     @Override
@@ -32,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String updateUser(User user) {
-        return null;
+        return "User " + user.getFirstName() + "has been updated!";
     }
 
     @Override
