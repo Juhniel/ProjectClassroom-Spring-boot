@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String updateUser(User user) {
+        userRepository.save(user);
         return "User " + user.getFirstName() + "has been updated!";
     }
 

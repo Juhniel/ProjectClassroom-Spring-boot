@@ -18,9 +18,15 @@ public class AccountServiceImpl implements AccountService{
         this.accountRepository = accountRepository;
     }
 
+
     @Override
     public List<Account> findAll() {
-        return accountRepository.findAllByOrderByAuthorityId();
+        return accountRepository.findAll();
+    }
+
+    @Override
+    public List<Account> findAllByOrderByAuthorityId(int id) {
+        return accountRepository.findAllByOrderByAuthorityId(id);
     }
 
     @Override
@@ -44,6 +50,7 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public String updateUser(Account account) {
+        accountRepository.save(account);
         return "Update successful! Account with username " + account.getUsername() + "has been updated.";
     }
 

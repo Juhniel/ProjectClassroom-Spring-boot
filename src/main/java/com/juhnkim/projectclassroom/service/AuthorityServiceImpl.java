@@ -24,6 +24,7 @@ public class AuthorityServiceImpl implements AuthorityService{
 
     @Override
     public String update(Authority authority) {
+        authorityRepository.save(authority);
         return "Authority was updated successfully!";
     }
 
