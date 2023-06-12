@@ -35,10 +35,19 @@ public class UserController {
     public String showUsers(Model model) {
 
         List<User> userList = userService.findAllByLastName();
-
+        List<Account> accountList = accountService.findAllByOrderByAuthorityId();
         model.addAttribute("users", userList);
+        model.addAttribute("accounts", accountList);
+
+        System.out.println(accountList);
+//        for(Account tempAccount : accountList) {
+//            System.out.println(tempAccount);
+//            System.out.println(tempAccount.getAuthority().getId());
+//        }
         return "userList";
     }
+
+
 
     @PostMapping("/createAccount")
     public String createAccount(@RequestParam int userId) {
@@ -51,7 +60,6 @@ public class UserController {
         account.setAuthority(authorityService.findById(2));
 
         account.setUser(user);
-
 
         // save the account object
         accountService.save(account);

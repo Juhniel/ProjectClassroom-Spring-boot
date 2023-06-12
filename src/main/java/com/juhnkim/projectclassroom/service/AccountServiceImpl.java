@@ -26,8 +26,8 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public List<Account> findAllByOrderByAuthorityId(int id) {
-        return accountRepository.findAllByOrderByAuthorityId(id);
+    public List<Account> findAllByOrderByAuthorityId() {
+        return accountRepository.findAllOrderByAuthorityId();
     }
 
     @Override

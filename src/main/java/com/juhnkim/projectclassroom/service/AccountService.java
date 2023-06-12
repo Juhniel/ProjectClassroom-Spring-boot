@@ -8,7 +8,8 @@ import java.util.List;
 public interface AccountService {
 
     List<Account> findAll();
-    List<Account> findAllByOrderByAuthorityId(int id);
+    List<Account> findAllByOrderByAuthorityId();
+
 
     Account findByUsername(String username);
 
@@ -18,4 +19,6 @@ public interface AccountService {
 
     String updateUser(Account account);
     void delete(Account account);
+
+
 }

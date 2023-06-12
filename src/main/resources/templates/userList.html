@@ -24,6 +24,9 @@
                     email
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Role
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Action
                 </th>
             </tr>
@@ -35,6 +38,7 @@
                 </th>
                 <td th:text="${tempUser.lastName}" class="px-6 py-4"></td>
                 <td th:text="${tempUser.email}" class="px-6 py-4"></td>
+<!--                <td th:each="tempAccount : ${accounts}" th:text="${tempAccount.getAuthority().getId()}" class="px-6 py-4"></td>-->
                 <td class="px-6 py-4">
                     <form action="#" th:action="@{/classroom/users/createAccount}" method="POST">
                         <input type="hidden" name="userId" th:value="${tempUser.id}">

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface AccountRepository extends JpaRepository<Account, String> {
 
-    @Query(value = "SELECT username FROM account WHERE authority_id = ?1", nativeQuery = true)
-    List<Account> findAllByOrderByAuthorityId(int id);
+    @Query(value = "SELECT * FROM account ORDER BY authority_id", nativeQuery = true)
+    List<Account> findAllOrderByAuthorityId();
 }
