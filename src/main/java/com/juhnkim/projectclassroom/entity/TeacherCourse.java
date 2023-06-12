@@ -2,11 +2,9 @@ package com.juhnkim.projectclassroom.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-@Table(name = "user_course")
-public class UserCourse {
+@Table(name = "teacher_course")
+public class TeacherCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -20,7 +18,7 @@ public class UserCourse {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    public UserCourse() {
+    public TeacherCourse() {
 
     }
 

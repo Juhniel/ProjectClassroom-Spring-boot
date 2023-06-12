@@ -2,11 +2,9 @@ package com.juhnkim.projectclassroom.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-@Table(name = "user_grade")
-public class UserGrade {
+@Table(name = "student_course")
+public class StudentCourse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +22,11 @@ public class UserGrade {
     @JoinColumn(name = "username")
     private Account account;
 
-    public UserGrade() {
+    public StudentCourse() {
 
     }
 
-    public UserGrade(String grade) {
+    public StudentCourse(String grade) {
         this.grade = grade;
     }
 
