@@ -25,7 +25,7 @@ public class ClassroomController {
         return "home";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/addUserForm")
     public String addUser(Model model) {
 
         User user = new User();

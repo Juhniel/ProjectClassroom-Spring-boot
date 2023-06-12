@@ -6,6 +6,8 @@ import com.juhnkim.projectclassroom.entity.Authority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthorityServiceImpl implements AuthorityService{
 
@@ -31,5 +33,19 @@ public class AuthorityServiceImpl implements AuthorityService{
     @Override
     public void delete(Authority authority) {
         authorityRepository.delete(authority);
+    }
+
+    @Override
+    public Authority findById(int id) {
+        Optional<Authority> result = authorityRepository.findById(id);
+        Authority authority;
+
+        if(result.isPresent()) {
+            authority = result.get();
+        }else {
+            throw new RuntimeException("Did not find the authority with the id: " + id);
+        }
+
+        return authority;
     }
 }

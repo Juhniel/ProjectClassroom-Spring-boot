@@ -9,4 +9,6 @@ public interface AuthorityService {
     String update(Authority authority);
 
     void delete(Authority authority);
+
+    Authority findById(int id);
 }
