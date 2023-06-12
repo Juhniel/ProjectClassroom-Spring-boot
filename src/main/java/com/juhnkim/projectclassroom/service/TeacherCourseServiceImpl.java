@@ -16,26 +16,27 @@ public class TeacherCourseServiceImpl implements TeacherCourseService{
     }
     @Override
     public void save(TeacherCourse teacherCourse) {
-
+        teacherCourseRepository.save(teacherCourse);
     }
 
     @Override
     public String update(TeacherCourse teacherCourse) {
-        return "";
+        teacherCourseRepository.save(teacherCourse);
+        return "Teacher's course has been updated successfully!";
     }
 
     @Override
     public void delete(TeacherCourse teacherCourse) {
-
+        teacherCourseRepository.delete(teacherCourse);
     }
 
     @Override
     public List<TeacherCourse> findAllTeachersByCourseId(int id) {
-        return null;
+        return teacherCourseRepository.findAllTeachersByCourseId(id);
     }
 
     @Override
     public List<TeacherCourse> findAllCoursesByUsername(String username) {
-        return null;
+        return teacherCourseRepository.findAllTeachersByUsername(username);
     }
 }
