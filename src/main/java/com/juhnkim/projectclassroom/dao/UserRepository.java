@@ -9,5 +9,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     // custom method for sorting users by last name
 
-    public List<User> findAllByOrderByLastNameAsc();
+    List<User> findAllByOrderByLastNameAsc();
 }

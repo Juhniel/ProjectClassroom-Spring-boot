@@ -16,8 +16,14 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+
     @Override
     public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public List<User> findAllByLastName() {
         return userRepository.findAllByOrderByLastNameAsc();
     }
 

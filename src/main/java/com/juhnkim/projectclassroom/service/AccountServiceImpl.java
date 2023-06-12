@@ -2,6 +2,7 @@ package com.juhnkim.projectclassroom.service;
 
 import com.juhnkim.projectclassroom.dao.AccountRepository;
 import com.juhnkim.projectclassroom.entity.Account;
+import com.juhnkim.projectclassroom.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,12 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public void save(Account account) {
         accountRepository.save(account);
+    }
+
+    @Override
+    public void createNewAccount(User user) {
+
+//        save(account);
     }
 
     @Override
