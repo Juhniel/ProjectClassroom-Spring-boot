@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthorityServiceImpl implements AuthorityService{
 
-    private AuthorityRepository authorityRepository;
+    private final AuthorityRepository authorityRepository;
 
     @Autowired
     public AuthorityServiceImpl(AuthorityRepository authorityRepository) {
@@ -19,16 +19,16 @@ public class AuthorityServiceImpl implements AuthorityService{
 
     @Override
     public void save(Authority authority) {
-
+        authorityRepository.save(authority);
     }
 
     @Override
     public String update(Authority authority) {
-        return null;
+        return "Authority was updated successfully!";
     }
 
     @Override
     public void delete(Authority authority) {
-
+        authorityRepository.delete(authority);
     }
 }

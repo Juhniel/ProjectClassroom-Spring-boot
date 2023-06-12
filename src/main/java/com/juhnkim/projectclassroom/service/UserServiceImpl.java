@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
-
+        userRepository.save(user);
     }
 
     @Override
@@ -48,6 +48,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(User user) {
-
+        userRepository.delete(user);
     }
 }
