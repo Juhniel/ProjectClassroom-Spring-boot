@@ -9,7 +9,6 @@ import java.util.List;
 @Table(name = "account")
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "username")
     private String username;
 
@@ -45,7 +44,9 @@ public class Account {
 
     }
 
-    public Account(String password, Timestamp created, Timestamp updated, User user) {
+
+    public Account(String username, String password, Timestamp created, Timestamp updated, User user) {
+        this.username = username;
         this.password = password;
         this.created = created;
         this.updated = updated;
