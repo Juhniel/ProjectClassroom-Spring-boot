@@ -9,7 +9,7 @@ public interface AccountService {
 
     List<Account> findAll();
 
-    Account findById(int id);
+    Account findByUsername(String username);
 
     void save(Account account);
 

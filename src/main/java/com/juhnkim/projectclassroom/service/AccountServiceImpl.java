@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountServiceImpl implements AccountService{
 
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     @Autowired
     public AccountServiceImpl(AccountRepository accountRepository) {
@@ -19,12 +20,21 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public List<Account> findAll() {
-        return null;
+        return accountRepository.findAllByOrderByAuthorityId();
     }
 
     @Override
-    public Account findById(int id) {
-        return null;
+    public Account findByUsername(String username) {
+        Optional<Account> result = accountRepository.findById(username);
+
+        Account account;
+
+        if(result.isPresent()) {
+            account = result.get();
+        } else {
+            throw new RuntimeException("Did not find the user with username:" + username);
+        }
+        return account;
     }
 
     @Override
@@ -34,7 +44,7 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public String updateUser(Account account) {
-        return null;
+        return "Update successful! Account with username " + account.getUsername() + "has been updated.";
     }
 
     @Override
