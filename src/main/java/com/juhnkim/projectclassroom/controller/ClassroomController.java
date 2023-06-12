@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/classroom")
 public class ClassroomController {
 
-    UserService userService;
 
-    public ClassroomController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping("/home")
     public String showMainPage() {
@@ -25,21 +21,7 @@ public class ClassroomController {
         return "home";
     }
 
-    @GetMapping("/addUserForm")
-    public String addUser(Model model) {
 
-        User user = new User();
 
-        model.addAttribute("user", user);
 
-        return "userForm";
-    }
-
-    @PostMapping("/save")
-    public String saveUser(@ModelAttribute("user") User user) {
-        // save user
-        userService.save(user);
-        // redirect
-        return "redirect:/classroom/add";
-    }
 }
