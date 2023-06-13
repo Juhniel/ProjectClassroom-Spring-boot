@@ -32,13 +32,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="tempUser : ${users}" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th th:text="${tempUser.firstName}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-
+            <tr th:each="tempUser : ${usersWithAuthorities}" class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                <th th:text="${tempUser['first_name']}" scope="row" class="px-6 py-4 font-normal">
                 </th>
-                <td th:text="${tempUser.lastName}" class="px-6 py-4"></td>
-                <td th:text="${tempUser.email}" class="px-6 py-4"></td>
-<!--                <td th:each="tempAccount : ${accounts}" th:text="${tempAccount.getAuthority().getId()}" class="px-6 py-4"></td>-->
+                <td th:text="${tempUser['last_name']}" class="px-6 py-4"></td>
+                <td th:text="${tempUser['email']}" class="px-6 py-4"></td>
+                <td th:text="${tempUser['authority']}"></td>
                 <td class="px-6 py-4">
                     <form action="#" th:action="@{/classroom/users/createAccount}" method="POST">
                         <input type="hidden" name="userId" th:value="${tempUser.id}">

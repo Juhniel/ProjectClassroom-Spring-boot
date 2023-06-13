@@ -3,6 +3,7 @@ package com.juhnkim.projectclassroom.service;
 import com.juhnkim.projectclassroom.entity.User;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface UserService {
@@ -16,4 +17,6 @@ public interface UserService {
 
     String updateUser(User user);
     void delete(User user);
+
+    List<Map<String, Object>> findAllUsersWithAuthorities();
 }

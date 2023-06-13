@@ -5,6 +5,7 @@ import com.juhnkim.projectclassroom.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -56,5 +57,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(User user) {
         userRepository.delete(user);
+    }
+
+    @Override
+    public List<Map<String, Object>> findAllUsersWithAuthorities() {
+        return userRepository.findAllUsersWithAuthorities();
     }
 }

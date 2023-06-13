@@ -6,6 +6,7 @@ import com.juhnkim.projectclassroom.entity.Authority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -47,5 +48,10 @@ public class AuthorityServiceImpl implements AuthorityService{
         }
 
         return authority;
+    }
+
+    @Override
+    public List<Authority> findAll() {
+        return authorityRepository.findAll();
     }
 }
