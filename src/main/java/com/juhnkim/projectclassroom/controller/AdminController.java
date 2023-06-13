@@ -1,25 +1,34 @@
 package com.juhnkim.projectclassroom.controller;
 
+import com.juhnkim.projectclassroom.entity.Account;
 import com.juhnkim.projectclassroom.entity.Course;
 import com.juhnkim.projectclassroom.entity.User;
+import com.juhnkim.projectclassroom.service.AccountService;
+import com.juhnkim.projectclassroom.service.AuthorityService;
 import com.juhnkim.projectclassroom.service.CourseService;
 import com.juhnkim.projectclassroom.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Controller
-@RequestMapping("/classroom/admin")
+@RequestMapping("/admin")
 public class AdminController {
 
     UserService userService;
+    AuthorityService authorityService;
+    AccountService accountService;
     CourseService courseService;
 
-    public AdminController(UserService userService, CourseService courseService) {
+    @Autowired
+    public AdminController(UserService userService, CourseService courseService, AuthorityService authorityService, AccountService accountService) {
         this.userService = userService;
+        this.authorityService = authorityService;
+        this.accountService = accountService;
         this.courseService = courseService;
     }
 
@@ -38,7 +47,7 @@ public class AdminController {
         // save user
         courseService.save(course);
         // redirect
-        return "redirect:/classroom/admin/addCourse";
+        return "redirect:/admin/addCourse";
     }
 
     @GetMapping("/addUserForm")
@@ -56,6 +65,25 @@ public class AdminController {
         // save user
         userService.save(user);
         // redirect
-        return "redirect:/classroom/admin/addUserForm";
+        return "redirect:/admin/addUserForm";
+    }
+
+    @PostMapping("/createAccount")
+    public String createAccount(@RequestParam int userId) {
+
+        User user = userService.findById(userId);
+
+        // create new account object
+        Account account = new Account(user.getFirstName(), user.getFirstName(), Timestamp.valueOf(LocalDateTime.now()), null);
+
+        account.setAuthority(authorityService.findById(2));
+
+        account.setUser(user);
+
+        // save the account object
+        accountService.save(account);
+
+        // redirect
+        return "redirect:/classroom/users";
     }
 }

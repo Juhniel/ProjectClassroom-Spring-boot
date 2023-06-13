@@ -46,22 +46,5 @@ public class UserController {
 
 
 
-    @PostMapping("/createAccount")
-    public String createAccount(@RequestParam int userId) {
 
-        User user = userService.findById(userId);
-
-        // create new account object
-        Account account = new Account(user.getFirstName(), user.getFirstName(), Timestamp.valueOf(LocalDateTime.now()), null);
-
-        account.setAuthority(authorityService.findById(2));
-
-        account.setUser(user);
-
-        // save the account object
-        accountService.save(account);
-
-        // redirect
-        return "redirect:/classroom/users";
-    }
 }

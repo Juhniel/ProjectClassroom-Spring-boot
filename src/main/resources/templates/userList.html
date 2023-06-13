@@ -39,8 +39,8 @@
                 <td th:text="${tempUser['email']}" class="px-6 py-4"></td>
                 <td th:text="${tempUser['authority']}"></td>
                 <td class="px-6 py-4">
-                    <form action="#" th:action="@{/classroom/users/createAccount}" method="POST">
-                        <input type="hidden" name="userId" th:value="${tempUser.id}">
+                    <form action="#" th:action="@{/admin/createAccount}" method="POST">
+                        <input type="hidden" name="userId" th:value="${tempUser['id']}">
                         <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Create Account</button>
                     </form>
                 </td>
