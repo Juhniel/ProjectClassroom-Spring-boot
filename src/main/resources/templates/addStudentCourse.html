@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Thymeleaf demo</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+    <!--    <link rel="stylesheet" th:href="@{/css/demo.css}"/>-->
+</head>
+<body>
+
+<!--LÄGG TILL STUDENTER HÄR-->
+
+<form action="#" th:action="@{/admin/students/addStudentCourse}" method="POST">
+    <select name="username">
+        <option th:value="${student.username}" name="username" th:each="student : ${students}" th:text="${student.username}"></option>
+    </select>
+<!--    <input type="hidden" name="userId" th:value="${students}">-->
+
+
+
+
+
+<!--LÄGG TILL ALLA KURSER HÄR-->
+
+<fieldset>
+    <legend class="sr-only">Courses</legend>
+    <div class="flex items-center mb-4" th:each="course : ${courses}">
+            <input id="course" type="radio" name="course" th:value="${course.id}" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+            <label th:text="${course.courseName}" for="course" class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+            </label>
+    </div>
+    <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Add Course to Student</button>
+</fieldset>
+</form>
+
+</body>
+
+</html>

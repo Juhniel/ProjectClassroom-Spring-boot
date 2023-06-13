@@ -22,5 +22,7 @@ public interface AccountService {
 
     Account findByUserId(int userId);
 
+    List<Account> findAllByAuthorityId(int id);
+
 
 }

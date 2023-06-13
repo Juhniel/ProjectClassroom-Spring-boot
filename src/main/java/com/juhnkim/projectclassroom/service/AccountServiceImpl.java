@@ -70,4 +70,9 @@ public class AccountServiceImpl implements AccountService{
     public Account findByUserId(int userId) {
         return accountRepository.findByUserId(userId);
     }
+
+    @Override
+    public List<Account> findAllByAuthorityId(int id) {
+        return accountRepository.findAllByAuthorityId(id);
+    }
 }
