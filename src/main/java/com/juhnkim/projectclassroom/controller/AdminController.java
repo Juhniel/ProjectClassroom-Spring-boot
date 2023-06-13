@@ -1,9 +1,6 @@
 package com.juhnkim.projectclassroom.controller;
 
-import com.juhnkim.projectclassroom.entity.Account;
-import com.juhnkim.projectclassroom.entity.Course;
-import com.juhnkim.projectclassroom.entity.StudentCourse;
-import com.juhnkim.projectclassroom.entity.User;
+import com.juhnkim.projectclassroom.entity.*;
 import com.juhnkim.projectclassroom.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -124,18 +121,59 @@ public class AdminController {
         return "addStudentCourse";
     }
 
-    @PostMapping("/teachers/courses")
-    public String showTeacherCourses() {
+    @GetMapping("/teachers/courses")
+    public String showTeacherCourses(Model model) {
+
+        List<Course> courseList = courseService.findAll();
+        model.addAttribute("courses", courseList);
+
+        List<Account> teachersList = accountService.findAllByAuthorityId(2);
+
+        model.addAttribute("teachers", teachersList);
 
         return "addTeacherCourse";
     }
 
+
+    @PostMapping("/teachers/addTeacherCourse")
+    public String addTeacherCourse(@RequestParam String username, @RequestParam int course, Model model) {
+
+        TeacherCourse teacherCourse = new TeacherCourse();
+
+        Course theTeacherCourse = courseService.findById(course);
+        Account theTeacherAccount = accountService.findByUsername(username);
+        teacherCourse.setCourse(theTeacherCourse);
+        teacherCourse.setAccount(theTeacherAccount);
+
+        try {
+            teacherCourseService.save(teacherCourse);
+        }catch(IllegalArgumentException e) {
+            model.addAttribute("duplicateCourseError", e.getMessage());
+            return showTeacherCourses(model);
+        }
+
+        return "redirect:/admin/teachers/courses";
+    }
+
     @PostMapping("/students/addStudentCourse")
-    public String addStudentCourse(@RequestParam String username, @RequestParam int course) {
+    public String addStudentCourse(@RequestParam String username, @RequestParam int course, Model model) {
 
         StudentCourse studentCourse = new StudentCourse();
-        studentCourse.setCourse();
 
-        studentCourseService.save();
+        Course theStudentCourse = courseService.findById(course);
+        Account theStudentAccount = accountService.findByUsername(username);
+        studentCourse.setCourse(theStudentCourse);
+        studentCourse.setAccount(theStudentAccount);
+
+        try{
+            studentCourseService.save(studentCourse);
+
+        }catch(IllegalArgumentException e){
+            model.addAttribute("duplicateCourseError", e.getMessage());
+            return showStudentCourses(model);
+        }
+        return "redirect:/admin/students/courses";
     }
+
+
 }

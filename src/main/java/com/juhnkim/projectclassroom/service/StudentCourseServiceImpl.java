@@ -17,6 +17,14 @@ public class StudentCourseServiceImpl implements StudentCourseService{
 
     @Override
     public void save(StudentCourse studentCourse) {
+
+        List<StudentCourse> studentCourseList= findAll();
+
+        for(StudentCourse theStudentCourse : studentCourseList) {
+            if(theStudentCourse.getCourse() == studentCourse.getCourse() && theStudentCourse.getAccount() == studentCourse.getAccount()) {
+                throw new IllegalArgumentException("Course already assigned to this student.");
+            }
+        }
         studentCourseRepository.save(studentCourse);
     }
 
@@ -29,6 +37,11 @@ public class StudentCourseServiceImpl implements StudentCourseService{
     @Override
     public void delete(StudentCourse studentCourse) {
         studentCourseRepository.delete(studentCourse);
+    }
+
+    @Override
+    public List<StudentCourse> findAll() {
+        return studentCourseRepository.findAll();
     }
 
     @Override

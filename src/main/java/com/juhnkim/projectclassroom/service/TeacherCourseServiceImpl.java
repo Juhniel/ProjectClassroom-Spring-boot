@@ -9,13 +9,21 @@ import java.util.List;
 @Service
 public class TeacherCourseServiceImpl implements TeacherCourseService{
 
-    private TeacherCourseRepository teacherCourseRepository;
+    private final TeacherCourseRepository teacherCourseRepository;
 
     public TeacherCourseServiceImpl(TeacherCourseRepository teacherCourseRepository) {
         this.teacherCourseRepository = teacherCourseRepository;
     }
     @Override
     public void save(TeacherCourse teacherCourse) {
+
+        List<TeacherCourse> teacherCourseList = findAll();
+
+        for(TeacherCourse theTeacherCourse : teacherCourseList) {
+            if(theTeacherCourse.getCourse() == teacherCourse.getCourse() && theTeacherCourse.getAccount() == teacherCourse.getAccount()) {
+                throw new IllegalArgumentException("Course already assigned to this student.");
+            }
+        }
         teacherCourseRepository.save(teacherCourse);
     }
 
@@ -28,6 +36,11 @@ public class TeacherCourseServiceImpl implements TeacherCourseService{
     @Override
     public void delete(TeacherCourse teacherCourse) {
         teacherCourseRepository.delete(teacherCourse);
+    }
+
+    @Override
+    public List<TeacherCourse> findAll() {
+        return teacherCourseRepository.findAll();
     }
 
     @Override

@@ -13,6 +13,8 @@ public interface TeacherCourseService {
 
     void delete(TeacherCourse teacherCourse);
 
+    List<TeacherCourse> findAll();
+
     List<TeacherCourse> findAllTeachersByCourseId(int id);
 
     List<TeacherCourse> findAllCoursesByUsername(String username);

@@ -14,6 +14,8 @@ public interface StudentCourseService {
 
     void delete(StudentCourse studentCourse);
 
+    List<StudentCourse> findAll();
+
     List<StudentCourse> findAllStudentsByCourseId(int id);
 
     List<StudentCourse> findAllCoursesByUsername(String username);
