@@ -69,14 +69,14 @@ public class AdminController {
     }
 
     @PostMapping("/createAccount")
-    public String createAccount(@RequestParam int userId) {
+    public String createAccount(@RequestParam int userId, @RequestParam int authorityId) {
 
         User user = userService.findById(userId);
 
         // create new account object
         Account account = new Account(user.getFirstName(), user.getFirstName(), Timestamp.valueOf(LocalDateTime.now()), null);
 
-        account.setAuthority(authorityService.findById(2));
+        account.setAuthority(authorityService.findById(authorityId));
 
         account.setUser(user);
 
@@ -85,5 +85,22 @@ public class AdminController {
 
         // redirect
         return "redirect:/classroom/users";
+    }
+
+    @PostMapping("/updateAccount")
+    public String updateAccount(@RequestParam int userId, @RequestParam int authorityId) {
+        Account account = accountService.findByUserId(userId);
+
+        account.setAuthority(authorityService.findById(authorityId));
+
+        accountService.save(account);
+
+        return "redirect:/classroom/users";
+    }
+
+    @GetMapping("/systems")
+    public String showSystemsPage() {
+
+        return "adminSystem";
     }
 }

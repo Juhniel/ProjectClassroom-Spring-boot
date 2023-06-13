@@ -14,6 +14,11 @@ public class ClassroomController {
         return "home";
     }
 
+    @GetMapping("")
+    public String returnToMain() {
+        return "home";
+    }
+
 
 
 

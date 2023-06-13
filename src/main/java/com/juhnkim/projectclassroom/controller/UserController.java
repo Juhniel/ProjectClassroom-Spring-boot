@@ -1,8 +1,5 @@
 package com.juhnkim.projectclassroom.controller;
 
-import com.juhnkim.projectclassroom.entity.Account;
-import com.juhnkim.projectclassroom.entity.Authority;
-import com.juhnkim.projectclassroom.entity.User;
 import com.juhnkim.projectclassroom.service.AccountService;
 import com.juhnkim.projectclassroom.service.AuthorityService;
 import com.juhnkim.projectclassroom.service.UserService;
@@ -11,10 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
