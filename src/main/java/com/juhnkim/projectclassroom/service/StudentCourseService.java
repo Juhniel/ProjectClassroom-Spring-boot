@@ -5,6 +5,7 @@ import com.juhnkim.projectclassroom.entity.StudentCourse;
 import com.juhnkim.projectclassroom.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StudentCourseService {
 
@@ -19,5 +20,9 @@ public interface StudentCourseService {
     List<StudentCourse> findAllStudentsByCourseId(int id);
 
     List<StudentCourse> findAllCoursesByUsername(String username);
+
+    List<Map<String, Object>> findCourseAndTeacherByStudentUsername(String studentUsername);
+
+
 
 }

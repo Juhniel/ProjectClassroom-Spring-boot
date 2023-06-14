@@ -5,6 +5,7 @@ import com.juhnkim.projectclassroom.entity.StudentCourse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StudentCourseServiceImpl implements StudentCourseService{
@@ -52,5 +53,10 @@ public class StudentCourseServiceImpl implements StudentCourseService{
     @Override
     public List<StudentCourse> findAllCoursesByUsername(String username) {
         return studentCourseRepository.findAllCoursesByUsername(username);
+    }
+
+    @Override
+    public List<Map<String, Object>> findCourseAndTeacherByStudentUsername(String studentUsername) {
+        return studentCourseRepository.findCourseAndTeacherByStudentUsername(studentUsername);
     }
 }
